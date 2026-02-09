@@ -4,10 +4,15 @@ on:
     branches: [ main, master ] 
 jobs:
   test:
+    strategy:
+      matrix:
+        shard: [1, 2, 3, 4] # Adjust the number of shards based on your test suite size
+        
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.58.0-noble
+      
     steps:
     - uses: actions/checkout@v5
     - uses: actions/setup-node@v5
