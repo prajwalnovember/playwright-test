@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {  
+    "test:osapiens:headed": "playwright test tests/osapiens.spec.ts --headed"    
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
