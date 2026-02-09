@@ -30,7 +30,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: false,           // headless mode ensures browsers close automatically
+    headless: true,           // headless mode ensures browsers close automatically
     viewport: { width: 1366, height: 768 },
     actionTimeout: 15_000,
     ignoreHTTPSErrors: true,
