@@ -98,8 +98,8 @@ class CareersPage extends BasePage {
         this.isCareersPageTitleVisible = page.locator('a.careers-navigation-block__menu-item', { hasText: 'View Jobs' });
         this.viewJobsButton = page.locator('a.external-button[href="#js-careers-jobs-block"]');// can use getByRole ('button', { hasText: 'Learn more' });
         //this.viewJobsButton = page.getByRole('button', { name:'View Jobs'});      
-        this.allOpenJobPositionsLink = page.locator('//a[starts-with(@href, "/en/postings/") and text()]');
-        //this.allOpenJobPositionsLink = page.getByRole('rowgroup')
+        //this.allOpenJobPositionsLink = page.locator('//a[starts-with(@href, "/en/postings/") and text()]');
+        this.allOpenJobPositionsLink = page.locator('a[href^="/en/postings/"]'); // more robust locator using attribute matcher and filter for text.
         
     }
     /**
