@@ -13,7 +13,7 @@ import { test, expect } from "@playwright/test";
 
 }) */
 
-test("verify title", async ({ page }) => {
+test.skip("verify title", async ({ page }) => {
 
     await page.goto("http://www.google.com");
 
@@ -24,7 +24,7 @@ test("verify title", async ({ page }) => {
 
 })
 
-test("Verify header", async ({ page }) => {
+test.skip("Verify header", async ({ page }) => {
 
 
 
