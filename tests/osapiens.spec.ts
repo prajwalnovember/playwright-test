@@ -130,7 +130,6 @@ class CareersPage extends BasePage {
     async getAllJobOpeningsWithTitle(): Promise<{ title: string; }[]> {
 
         let allOpenJobPositionsWithTitle: { title: string }[] = [];
-        //await this.page.waitForSelector('a[href^="/en/postings/"]', { timeout: 15000 });
         await this.allOpenJobPositionsLink.first().waitFor({ state: 'visible', timeout: 15000 });
 
         // Retrieve all open job positions with titles and index. 
@@ -145,10 +144,6 @@ class CareersPage extends BasePage {
         } else {
             console.log(`There are no open positions found.`);
         }
-
-        //Logs and save them to AllOpenJobTitles.json file. always better to have a separate reporting utlity. Not to mix any file systems inside pages.
-        //const allJobTitelesPath = path.join(this.reportsDir, 'AllOpenJobTitles.json');
-        //fs.writeFileSync(allJobTitelesPath, JSON.stringify(allOpenJobPositionsWithTitle, null, 2));
         return allOpenJobPositionsWithTitle;
     }
 
@@ -157,18 +152,18 @@ class CareersPage extends BasePage {
      *  
     */
     async getJobsWithTitleQuality(allJobsWithTitleQuality: { title: string }[]): Promise<{ title: string }[]> {
-        let hasJobTitleQuality: { title: string }[] = [];
-        await test.step('Filter jobs containing "Quality"', async () => {
+        //let hasJobTitleQuality: { title: string }[] = [];
+        return await test.step('Filter jobs containing "Quality"', async () => {
            // hasJobTitleQuality = allJobsWithTitleQuality.filter(job => /\bquality\b/i.test(job.title)); // other approaches could be used here like job.title.toLowerCase().includes('quality')
-            hasJobTitleQuality = allJobsWithTitleQuality.filter(job => job.title.toLowerCase().includes('quality'));
+           const hasJobTitleQuality = allJobsWithTitleQuality.filter(job => job.title.toLowerCase().includes('quality'));
             if (hasJobTitleQuality.length > 0) {
                 console.log('Job titles containing "Quality":');
                 hasJobTitleQuality.forEach((job, index) => console.log(`   ${index + 1}. ${job.title}`));
             } else {
                 console.log('No jobs contain "Quality" in the title.');
             }
-        });
-        return hasJobTitleQuality;
+            return hasJobTitleQuality;
+        });        
     }
 }
 
