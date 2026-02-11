@@ -108,7 +108,7 @@ class CareersPage extends BasePage {
     async openCareersPage(): Promise<void> {
         await test.step('Open Careers Page', async () => {
             await super.navigate();
-            await expect(this.isCareersPageTitleVisible).toBeVisible();
+            await expect(this.isCareersPageTitleVisible).toBeVisible(); //locator assertion
             console.log('Osapiens careers page is loaded.');
         });
     }
@@ -118,7 +118,9 @@ class CareersPage extends BasePage {
      */
     async clickViewJobsButton(): Promise<void> {
         await test.step('Click "View Jobs" button', async () => {
-            await this.viewJobsButton.waitFor({ state: 'visible', timeout: 10000 });
+            //await this.viewJobsButton.waitFor({ state: 'visible', timeout: 10000 });
+            await expect(this.viewJobsButton).toBeVisible({ timeout: 10000 }); //locator assertion
+            await expect(this.viewJobsButton).toBeEnabled(); //locator assertion
             await this.viewJobsButton.click();
             console.log('Click "View jobs" button.');
         });
@@ -130,7 +132,8 @@ class CareersPage extends BasePage {
     async getAllJobOpeningsWithTitle(): Promise<{ title: string; }[]> {
 
         let allOpenJobPositionsWithTitle: { title: string }[] = [];
-        await this.allOpenJobPositionsLink.first().waitFor({ state: 'visible', timeout: 15000 });
+        //await this.allOpenJobPositionsLink.first().waitFor({ state: 'visible', timeout: 15000 });
+        await expect(this.allOpenJobPositionsLink.first()).toBeVisible({ timeout: 15000 }); //locator assertion
 
         // Retrieve all open job positions with titles and index. 
         allOpenJobPositionsWithTitle = (await this.allOpenJobPositionsLink.allInnerTexts()).map((title, index) => {
