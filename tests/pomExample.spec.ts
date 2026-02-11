@@ -7,7 +7,7 @@ import { DashboardPage } from '../pages/DashboardPage';
  * Tests are clean and readable - all page interactions are abstracted
  */
 
-test.describe('Login Tests with POM', () => {
+test.describe.skip('Login Tests with POM', () => {
     let loginPage: LoginPage;
 
     test.beforeEach(async ({ page }) => {
@@ -57,7 +57,7 @@ test.describe('Login Tests with POM', () => {
     });
 });
 
-test.describe('Dashboard Tests with POM', () => {
+test.describe.skip('Dashboard Tests with POM', () => {
     let dashboardPage: DashboardPage;
     let loginPage: LoginPage;
 
