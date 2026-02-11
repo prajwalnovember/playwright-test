@@ -42,12 +42,12 @@ test.describe('Login Tests with POM', () => {
         expect(isLoaded).toBeTruthy();
     });
 
-    test('should navigate to forgot password', async () => {
+    test('should navigate to forgot password', async ({ page }) => {
         await loginPage.clickForgotPassword();
 
         // Verify URL changed (or another element appeared)
-        await loginPage.page.waitForURL(/forgot-password/);
-        const url = loginPage.page.url();
+        await page.waitForURL(/forgot-password/);
+        const url = page.url();
         expect(url).toContain('forgot-password');
     });
 
@@ -75,10 +75,10 @@ test.describe('Dashboard Tests with POM', () => {
         expect(isLoaded).toBeTruthy();
     });
 
-    test('should navigate to menu option', async () => {
+    test('should navigate to menu option', async ({ page }) => {
         await dashboardPage.navigateToMenuOption('Reports');
-        await dashboardPage.page.waitForURL(/reports/);
-        const url = dashboardPage.page.url();
+        await page.waitForURL(/reports/);
+        const url = page.url();
         expect(url).toContain('reports');
     });
 
