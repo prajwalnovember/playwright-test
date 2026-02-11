@@ -29,8 +29,8 @@ class BasePage {
         const fullUrl = this.baseUrl + endpoint;
         console.log(`Navigating to ${fullUrl}`);
         //await this.page.setViewportSize({ width: 1920, height: 1080 });
-        await this.page.goto(fullUrl, { waitUntil: 'domcontentloaded' , timeout: 10_000});
-        
+        await this.page.goto(fullUrl, { waitUntil: 'domcontentloaded', timeout: 10_000 });
+
     }
 }
 
@@ -42,8 +42,8 @@ class Utils {
      * Handle cookies to accept or deny. Could be handled separately. could also use test.step here
      */
     static async handleCookies(page: Page): Promise<void> {
-        const acceptButton = page.getByRole('button' , {name: 'Accept all' });
-        const denyButton = page.getByRole('button' , {name: 'Reject all' });
+        const acceptButton = page.getByRole('button', { name: 'Accept all' });
+        const denyButton = page.getByRole('button', { name: 'Reject all' });
 
         try {
             const acceptVisible = await acceptButton.isVisible().catch(() => false);
@@ -90,7 +90,7 @@ class CareersPage extends BasePage {
     readonly isCareersPageTitleVisible: Locator;
     readonly viewJobsButton: Locator;
     readonly allOpenJobPositionsLink: Locator;
-   
+
 
     constructor(page: Page) {
         super(page);
@@ -100,14 +100,14 @@ class CareersPage extends BasePage {
         //this.viewJobsButton = page.getByRole('button', { name:'View Jobs'});      
         //this.allOpenJobPositionsLink = page.locator('//a[starts-with(@href, "/en/postings/") and text()]');
         this.allOpenJobPositionsLink = page.locator('a[href^="/en/postings/"]'); // more robust locator using attribute matcher and filter for text.
-        
+
     }
     /**
        * Opens the careers page and validates it's loaded
        */
     async openCareersPage(): Promise<void> {
         await test.step('Open Careers Page', async () => {
-            await super.navigate();            
+            await super.navigate();
             await expect(this.isCareersPageTitleVisible).toBeVisible();
             console.log('Osapiens careers page is loaded.');
         });
@@ -154,8 +154,8 @@ class CareersPage extends BasePage {
     async getJobsWithTitleQuality(allJobsWithTitleQuality: { title: string }[]): Promise<{ title: string }[]> {
         //let hasJobTitleQuality: { title: string }[] = [];
         return await test.step('Filter jobs containing "Quality"', async () => {
-           // hasJobTitleQuality = allJobsWithTitleQuality.filter(job => /\bquality\b/i.test(job.title)); // other approaches could be used here like job.title.toLowerCase().includes('quality')
-           const hasJobTitleQuality = allJobsWithTitleQuality.filter(job => job.title.toLowerCase().includes('quality'));
+            // hasJobTitleQuality = allJobsWithTitleQuality.filter(job => /\bquality\b/i.test(job.title)); // other approaches could be used here like job.title.toLowerCase().includes('quality')
+            const hasJobTitleQuality = allJobsWithTitleQuality.filter(job => job.title.toLowerCase().includes('quality'));
             if (hasJobTitleQuality.length > 0) {
                 console.log('Job titles containing "Quality":');
                 hasJobTitleQuality.forEach((job, index) => console.log(`   ${index + 1}. ${job.title}`));
@@ -163,7 +163,7 @@ class CareersPage extends BasePage {
                 console.log('No jobs contain "Quality" in the title.');
             }
             return hasJobTitleQuality;
-        });        
+        });
     }
 }
 
@@ -171,7 +171,7 @@ class CareersPage extends BasePage {
  * Main test here - could improve readability by breaking steps into smaller helper methods in test file
  */
 test('Verify Osapiens careers page and validate jobs that contain "Quality" in the title.', async ({ page }, testInfo) => {
-        await Utils.runWithRetry(async () => {
+    await Utils.runWithRetry(async () => {
         const careersPage = new CareersPage(page);
 
         await careersPage.openCareersPage();

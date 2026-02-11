@@ -1,4 +1,4 @@
-import{test,expect} from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
 
 
@@ -13,18 +13,18 @@ import{test,expect} from "@playwright/test";
 
 }) */
 
-test("verify title",async({page})=>{
+test("verify title", async ({ page }) => {
 
-await page.goto("http://www.google.com");
+    await page.goto("http://www.google.com");
 
-let title:string = await page.title();
-console.log("title: ",title);
+    let title: string = await page.title();
+    console.log("title: ", title);
 
-await expect(page).toHaveTitle("Google");
+    await expect(page).toHaveTitle("Google");
 
 })
 
-test("Verify header",async({page}) =>{
+test("Verify header", async ({ page }) => {
 
 
 

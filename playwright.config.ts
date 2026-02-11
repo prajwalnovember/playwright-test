@@ -22,7 +22,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html'],['github']],
+  reporter: [['html'], ['github']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -35,21 +35,22 @@ export default defineConfig({
     viewport: { width: 1366, height: 768 },
     actionTimeout: 15_000,
     ignoreHTTPSErrors: true,
-    
+
   },
 
   /* Configure projects for major browsers */
   projects: [
     //{name: 'setup', testMatch: /.*\.setup\.ts/},
-      
-     {
+
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome']
+      use: {
+        ...devices['Desktop Chrome']
         //storageState: 'playwright/.auth/user.json',
-       },
+      },
       //dependencies: ['setup'],
-      
-    },      
+
+    },
   ],
 
   /* Run your local dev server before starting the tests */
