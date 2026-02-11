@@ -118,7 +118,7 @@ class CareersPage extends BasePage {
      */
     async clickViewJobsButton(): Promise<void> {
         await test.step('Click "View Jobs" button', async () => {
-            //await this.viewJobsButton.waitFor({ state: 'visible', timeout: 10000 });
+            await this.viewJobsButton.waitFor({ state: 'visible', timeout: 10000 });
             await expect(this.viewJobsButton).toBeVisible({ timeout: 10000 }); //locator assertion
             await expect(this.viewJobsButton).toBeEnabled(); //locator assertion
             await this.viewJobsButton.click();

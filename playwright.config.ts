@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+import { json } from 'stream/consumers';
 
 /**
  * Load environment variables from .env file
@@ -22,7 +23,8 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html']],
+  reporter: [['html'], ["json", { outputFile: 'playwright-report/test-results.json' }]],
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -33,7 +35,7 @@ export default defineConfig({
     video: 'on',
     headless: true,           // headless mode ensures browsers close automatically
     viewport: { width: 1366, height: 768 },
-    actionTimeout: 15_000,
+    actionTimeout: 5000, // 5 seconds for actions like click, fill etc.
     ignoreHTTPSErrors: true,
   },
 
