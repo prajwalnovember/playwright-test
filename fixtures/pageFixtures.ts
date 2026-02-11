@@ -4,7 +4,7 @@ import { DashboardPage } from '../pages/DashboardPage';
 
 /**
  * Custom fixtures that extend the base test with page objects
- * Credentials come from playwright.config.ts use context
+    * This allows us to use loginPage and dashboardPage in our tests without manual initialization
  */
 export const test = base.extend<{
     loginPage: LoginPage;
