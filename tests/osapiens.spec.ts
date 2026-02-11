@@ -28,9 +28,9 @@ class BasePage {
     async navigate(endpoint = ''): Promise<void> {
         const fullUrl = this.baseUrl + endpoint;
         console.log(`Navigating to ${fullUrl}`);
-        //await this.page.setViewportSize({ width: 1920, height: 1080 });
+        //await this.page.setViewportSize({ width: 1920, height: 1080 }); // not needed if viewport is set in config, but can be useful for specific tests. Consider moving to test setup if needed globally.
         await this.page.goto(fullUrl, { waitUntil: 'domcontentloaded', timeout: 10_000 });
-
+        await expect(this.page).toHaveURL(fullUrl); // URL Assertion to ensure navigation is successful. This will throw if URL does not match, providing better debugging info.
     }
 }
 
