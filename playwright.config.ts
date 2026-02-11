@@ -1,12 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
+ * Load environment variables from .env file
+ * This allows you to use process.env in your tests
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -35,7 +35,6 @@ export default defineConfig({
     viewport: { width: 1366, height: 768 },
     actionTimeout: 15_000,
     ignoreHTTPSErrors: true,
-
   },
 
   /* Configure projects for major browsers */

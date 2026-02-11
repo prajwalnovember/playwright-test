@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {  
-    "test:osapiens:headed": "playwright test tests/osapiens.spec.ts --headed"    
+  "scripts": {
+    "test:osapiens:headed": "playwright test tests/osapiens.spec.ts --headed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "@types/node": "^24.9.1"
+    "@types/node": "^24.9.1",
+    "dotenv": "^16.4.5"
   }
 }
